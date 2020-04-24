@@ -1,3 +1,6 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+ebook_models = [models.EBook, models.Review]
+
+admin.site.register(ebook_models)
