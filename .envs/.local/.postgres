@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=biblyoteka
+POSTGRES_USER=qVHfZTOeqqavIcWkKdkqHKBgEdzhTDsA
+POSTGRES_PASSWORD=hEJWJ2E8Wlf6G8H4xgGauHCqEHJNA36uOGTxiWHzx3qax9eQN0n1wpKDXOrwpQIj
