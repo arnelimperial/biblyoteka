@@ -5,7 +5,8 @@ from biblyoteka.books import models
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Review
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ('ebook',)
 
 
 class EBookSerializer(serializers.ModelSerializer):
@@ -13,7 +14,7 @@ class EBookSerializer(serializers.ModelSerializer):
     # reviews = serializers.HyperlinkedRelatedField(
     #     many=True,
     #     read_only=True,
-    #     view_name=''
+    #     view_name='review-detail'
     # )
 
     class Meta:

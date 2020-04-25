@@ -23,7 +23,7 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews'
     )
-    review_author = models.CharField(max_length=30, blank=True)
+    reviewer = models.CharField(max_length=30, blank=True)
     review = models.TextField(blank=True)
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
