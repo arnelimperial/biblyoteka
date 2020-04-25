@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.conf import settings
+
+UserModel = settings.AUTH_USER_MODEL
 
 
 class EBook(models.Model):
@@ -23,7 +26,7 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviews'
     )
-    reviewer = models.CharField(max_length=30, blank=True)
+    reviewer = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     review = models.TextField(blank=True)
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]

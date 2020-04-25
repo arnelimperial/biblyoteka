@@ -14,6 +14,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("biblyoteka.users.urls", namespace="users")),
+    path("api-auth/", include("rest_framework.urls")),
     path("accounts/", include("allauth.urls")),
     path("api/", include("biblyoteka.books.api.urls", namespace="ebooks")),
     # Your stuff: custom urls includes go here

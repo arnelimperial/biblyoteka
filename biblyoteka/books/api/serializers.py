@@ -3,9 +3,11 @@ from biblyoteka.books import models
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    reviewer = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = models.Review
-        # fields = "__all__"
+        #fields = "__all__"
         exclude = ('ebook',)
 
 
