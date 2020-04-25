@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 from biblyoteka.books import models
 from . import serializers
 from biblyoteka.books.api import permissions as api_permissions
+from biblyoteka.books.api import pagination as api_pagination
 # class EBookListCreateAPIView(mixins.ListModelMixin,
 #                              mixins.CreateModelMixin,
 #                              generics.GenericAPIView):
@@ -17,10 +18,11 @@ from biblyoteka.books.api import permissions as api_permissions
 #     def post(self, request, *args, **kwargs):
 #         return self.create(request, *args, **kwargs)
 class EBookListCreateAPIView(generics.ListCreateAPIView):
-    queryset = models.EBook.objects.all()
+    queryset = models.EBook.objects.all().order_by('id')
     serializer_class = serializers.EBookSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     permission_classes = [api_permissions.IsAdminUserOrReadOnly]
+    pagination_class = api_pagination.SmallSetPagination
 
 class EBookDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.EBook.objects.all()
@@ -41,7 +43,7 @@ class ReviewCreateAPIView(generics.CreateAPIView):
             ebook=ebook,
             reviewer=reviewer
         )
-        if reviewer_queryset.exist():
+        if reviewer_queryset.exists():
             raise ValidationError('Review entry already been created.')
         serializer.save(ebook=ebook, reviewer=reviewer)
 
